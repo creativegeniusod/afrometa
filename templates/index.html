@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.io simple chat</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="inbox">
+
+        <!-- my username -->
+        <div class="iam"><b></b></div>
+
+
+        <!-- users list -->
+        <div class="inbox__people">
+          <h4>Active users</h4>
+        </div>
+
+
+        <!-- user messages -->
+        <div class="inbox__messages">
+          <div class="messages__history">&nbsp;</div>
+        </div>
+      </div>
+
+
+      <!--  -->
+      <form class="message_form">
+        <input type="text" class="message_form__input" placeholder="Type a message" />
+        <button class="message_form__button" type="submit">
+          Enter
+        </button>
+        <div class="fallback"></div>
+      </form>
+    </div>
+
+    <div id="me" data-me="0" style="display: none;"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/jquery-3.min.js"></script>
+
+    <script type="text/javascript" src="../js/helpers.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/listeners.js"></script>
+  </body>
+</html>

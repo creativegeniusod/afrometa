@@ -1,0 +1,9 @@
+{
+    "name": "Chat App Chrome",
+    "version": "0.1",
+    "description": "Chat Server app",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^2.3.0"
+    }
+}

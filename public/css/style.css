@@ -1,0 +1,103 @@
+.inbox {
+	margin-bottom: 10px;
+	min-height: 80vh;
+}
+.inbox__people {
+	position: relative;
+	float: left;
+	width: 30%;
+	background-color: #121212;
+	min-height: 80vh;
+	padding: 5px;
+	margin-right: 5px;
+}
+/*.inbox__messages,*/
+ .user-chatbox {
+	position: relative;
+	padding: 5px;
+	min-height: 80vh;
+	float: left;
+	width: 59%;
+	background-color: #efefef;
+}
+
+
+.inbox__people h4 {
+	border-bottom: 2px solid #e02828;
+	color: #d40b0b;
+	font-size: 18px;
+}
+
+.chat_ib h5 {
+	color: #6abd6a;
+	padding: 3px;
+	cursor: pointer;
+}
+.chat_ib:hover {
+	background-color: grey;
+}
+
+.fallback {
+	font-style: italic;
+	font-size: 10px;
+}
+
+.outgoing__message {
+	float: right;
+	text-align: left;
+	width: 70%;
+}
+.outgoing__message .sent__message .message__message {
+	padding: 4px;
+    width: 100%;
+    background-color: #30a73052;
+}
+
+.message__message {
+	margin: 0 !important;
+}
+
+
+.received__message {
+	float: left;
+	text-align: right;
+	width: 70%;
+}
+.received__message .message__message {
+	padding: 4px;
+    width: 100%;
+    background-color: #eab1ab;
+}
+
+.message__info .message__author {
+	font-size: 8px;
+	float: left;
+}
+.message__info .time_date {
+	font-size: 8px;
+	float: right;
+}
+
+.message_form {
+	clear: both;
+	padding-top: 10px;
+}
+
+.user-chatbox {
+	margin: 0;
+}
+.user-chatbox .user-name {
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	color: green;
+	border-bottom: 2px solid red;
+	text-align: left;
+
+}
+
+.message-notify {
+	font-weight: bold;
+	color: red;
+	padding-right: 5px;
+}
