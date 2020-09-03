@@ -86,6 +86,7 @@
 .user-chatbox {
 	margin: 0;
 }
+
 .user-chatbox .user-name {
 	font-size: 12px;
 	font-weight: bold;
@@ -93,7 +94,6 @@
 	color: green;
 	border-bottom: 2px solid red;
 	text-align: left;
-
 }
 
 .message-notify {

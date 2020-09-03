@@ -1,40 +1,36 @@
 $(function () {
-	var socket = io();
+	const socket = io();
 
-	const inboxPeople = document.querySelector(".inbox__people");
-	const inputField = document.querySelector(".message_form__input");
-	const messageForm = document.querySelector(".message_form");
-	const messageBox = document.querySelector(".messages__history");
-	const fallback = document.querySelector(".fallback");
+	const inboxPeople = document.querySelector('.inbox__people');
+	const inputField = document.querySelector('.message_form__input');
+	const messageForm = document.querySelector('.message_form');
+	const messageBox = document.querySelector('.messages__history');
+	const fallback = document.querySelector('.fallback');
 
-	var userName = "";
+	/**
+	* New User. Generates Id.
+	*/
+	var userName = User.newUserId();
 
-	const newUserConnected = (user) => {
-		var user_id = Math.floor((Math.random() * 100000) + 1);
-		userName = user || `User${user_id}`;
 
-		$("#me").attr("data-me", userName);
-		$(".iam b").html(userName);
+	/**
+	* Update User Html Attrs.
+	*/
+	Render.updateUserDataOnPage(userName);
 
-		socket.emit('new user', userName);
-		addToUserBox(userName);
-	};
 
-	const addToUserBox = (userName) => {
-		if (!!document.querySelector(`.${userName}-userlist`)) {
-			return;
-		}
+	/**
+	* Emit Messages on socket.
+	*/
+	Socket.emitMessage(socket, 'new user', userName);
 
-		if (userName != $("#me").data("me")) {
-			const userBox = `
-				<div class="chat_ib ${userName}-userlist" data-user-id="${userName}">
-					<h5>${userName}</h5>
-				</div>
-			`;
 
-			inboxPeople.innerHTML += userBox;
-		}
-	};
+	/**
+	* Update Users Online list.
+	*/
+	Helpers.updateUserList(inboxPeople, userName);
+
+	
 
 	const addNewMessage = ({ from_user, message, to }) => {
 		const time = new Date();
@@ -64,9 +60,8 @@ $(function () {
 		`;
 
 		// me.
-		var myself = $("#me").data("me");
+		var myself = $(`#me`).data(`me`);
 
-		// messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
 		user_message = from_user === myself ? myMsg : receivedMsg;
 
 		if ( to == myself ) {
@@ -78,40 +73,38 @@ $(function () {
 			Helpers.userMessageNotification(from_user);
 
 
-			$(".chat-"+ from_user + " .user-messages").append(user_message);
+			$(`.chat-${from_user} .user-messages`).append(user_message);
 			
 
 		} else if (from_user == myself) {
-			$(".chat-"+ to + " .user-messages").append(user_message);
+			$(`.chat-${to} .user-messages`).append(user_message);
 		}
 
 	};
 
 
-	// new user is connected.
-	newUserConnected();
-
-	messageForm.addEventListener("submit", (e) => {
+	messageForm.addEventListener(`submit`, (e) => {
 		e.preventDefault();
 		if (!inputField.value) {
 			return;
 		}
 
-		var from = $("#me").data("me");
-		var to = $(".user-chatbox.active").data("user");
+		var from = $(`#me`).data(`me`);
+		var to = $(`.user-chatbox.active`).data(`user`);
 
-		socket.emit("chat message", {
+		socket.emit(`chat message`, {
 			message: inputField.value,
 			from: from,
-			to: to
+			to: to,
+			time_of_message: new Date()
 		});
 
 		inputField.value = "";
 	});
 
-	inputField.addEventListener("keyup", () => {
-		var to = $(".user-chatbox.active").data("user");
-		socket.emit("typing", {
+	inputField.addEventListener(`keyup`, () => {
+		var to = $(`.user-chatbox.active`).data(`user`);
+		socket.emit(`typing`, {
 			isTyping: inputField.value.length > 0,
 			user: userName,
 			typingTo: to
@@ -121,19 +114,19 @@ $(function () {
 
 
 
-	socket.on('new user', function(data) {
-		data.map((user) => addToUserBox(user));
+	socket.on(`new user`, function(data) {
+		data.map((user) => Helpers.updateUserList(inboxPeople, user));
 	});
 
-	socket.on("user disconnected", function(userName) {
+	socket.on(`user disconnected`, function(userName) {
 		document.querySelector(`.${userName}-userlist`).remove();
 	});
 
-	socket.on("chat message", function(data) {
+	socket.on(`chat message`, function(data) {
 		addNewMessage({ from_user: data.from, message: data.message, to: data.to });
 	});
 
-	socket.on("typing", function(data) {
+	socket.on(`typing`, function(data) {
 		const { isTyping, user, typingTo } = data;
 
 		if (!isTyping) {
