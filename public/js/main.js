@@ -96,7 +96,8 @@ $(function () {
 			message: inputField.value,
 			from: from,
 			to: to,
-			time_of_message: new Date()
+			time_of_message: new Date(),
+			channelId: btoa(`${from}-0-${to}`)
 		});
 
 		inputField.value = "";
