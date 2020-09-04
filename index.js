@@ -53,7 +53,7 @@ app.use(express.static('public'));
 /**
 * Route.
 */
-app.get('/', RouteListener.indexRoute);
+app.get('/dumm', RouteListener.indexRoute);
 
 
 
