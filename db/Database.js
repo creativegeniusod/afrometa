@@ -17,7 +17,8 @@ console.log(`=======================================================\n`);
 /**
 * Database Credentials.
 */
-const db = Database.local;
+// const db = Database.local;
+const db = Database[env];
 
 
 /**

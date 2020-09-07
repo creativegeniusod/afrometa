@@ -10,21 +10,21 @@ module.exports = {
 	},
 
 	dev: {
-		USERNAME: 'chat_room_dev',
+		USERNAME: 'chat_room',
 		PASSWORD: 'admin123',
 		HOSTNAME: '127.0.0.1',
 		PORT: '27017',
-		DB: 'chat_room',
-		AUTH_SOURCE: 'chat_room'
+		DB: 'chat_room_dev',
+		AUTH_SOURCE: 'chat_room_dev'
 	},
 
 	prod: {
-		USERNAME: 'chat_room_prod',
+		USERNAME: 'chat_room',
 		PASSWORD: 'admin123',
 		HOSTNAME: '127.0.0.1',
 		PORT: '27017',
-		DB: 'chat_room',
-		AUTH_SOURCE: 'chat_room'
+		DB: 'chat_room_prod',
+		AUTH_SOURCE: 'chat_room_prod'
 	},
 
 	test: {
@@ -33,6 +33,6 @@ module.exports = {
 		HOSTNAME: '127.0.0.1',
 		PORT: '27017',
 		DB: 'chat_room',
-		AUTH_SOURCE: 'chat_room'
+		AUTH_SOURCE: 'chat_room_test'
 	}
 };
