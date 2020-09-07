@@ -9,13 +9,15 @@ module.exports = {
 		AUTH_SOURCE: 'chat_room'
 	},
 
+
+	
 	dev: {
-		USERNAME: 'chat_room',
+		USERNAME: 'chat_room_dev',
 		PASSWORD: 'admin123',
 		HOSTNAME: '127.0.0.1',
 		PORT: '27017',
-		DB: 'chat_room_dev',
-		AUTH_SOURCE: 'chat_room_dev'
+		DB: 'chat_room',
+		AUTH_SOURCE: 'chat_room'
 	},
 
 	prod: {
