@@ -14,7 +14,6 @@ module.exports = {
 			console.log('username', data);
 			activeUsers.add(data);
 			io.emit("new user", [...activeUsers]);
-			// io.emit("new user", data);
 		});
 
 

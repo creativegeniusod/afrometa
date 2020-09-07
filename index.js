@@ -5,7 +5,9 @@ const app = express();
 const router = express.Router();
 
 const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+	transports: ['polling']
+});
 
 
 /** Custom File Exports. **/
