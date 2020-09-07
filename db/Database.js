@@ -5,12 +5,12 @@ const Database = require('./DatabaseConfig');
 /**
 * select user selected database.
 */
-var env = 'prod';
+var env = 'dev';
 if (process.argv[2] !== undefined) {
 	env = process.argv[2];
 }
 console.log(`=======================================================`);
-console.log(`Started in Environment: "${env}" ${env == 'prod' ? '(default)': ''}`);
+console.log(`Started in Environment: "${env}" ${env == 'dev' ? '(default)': ''}`);
 console.log(`=======================================================\n`);
 
 
