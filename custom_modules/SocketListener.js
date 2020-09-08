@@ -31,6 +31,10 @@ module.exports = {
 		socket.on("typing", function (data) {
 			socket.broadcast.emit("typing", data);
 		});
+
+		socket.on("new room", (data) => {
+			io.emit("new room notify", data);
+		});
 	},
 
 };
