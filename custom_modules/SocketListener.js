@@ -39,6 +39,10 @@ module.exports = {
 		socket.on("chat room message", function (data) {
 			io.emit("chat room message", data);
 		});
+
+		socket.on("new users in room", (data) => {
+			io.emit("new users in room", data);
+		});
 	},
 
 };
