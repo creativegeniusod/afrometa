@@ -19,7 +19,6 @@ console.log(`=======================================================\n`);
 */
 // const db = Database.local;
 const db = Database[env];
-console.log('db::', db);
 
 
 /**

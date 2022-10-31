@@ -11,21 +11,21 @@ module.exports = {
 
 
 	dev: {
-		USERNAME: 'adminodz',
-		PASSWORD: 'Ygyyrty4534',
-		HOSTNAME: '127.0.0.1',
-		PORT: '27017',
-		DB: 'chat_room',
-		AUTH_SOURCE: 'admin'
+		USERNAME: process.env.DB_UN,
+		PASSWORD: process.env.DB_PWD,
+		HOSTNAME: process.env.DB_HOST,
+		PORT: process.env.DB_PORT,
+		DB: process.env.DB_NAME,
+		AUTH_SOURCE: process.env.DB_AUTH_SOURCE
 	},
 
 	prod: {
-		USERNAME: 'chat_room',
-		PASSWORD: 'admin123',
-		HOSTNAME: '127.0.0.1',
-		PORT: '27017',
-		DB: 'chat_room_prod',
-		AUTH_SOURCE: 'chat_room_prod'
+		USERNAME: process.env.DB_UN,
+		PASSWORD: process.env.DB_PWD,
+		HOSTNAME: process.env.DB_HOST,
+		PORT: process.env.DB_PORT,
+		DB: process.env.DB_NAME,
+		AUTH_SOURCE: process.env.DB_NAME
 	},
 
 	test: {

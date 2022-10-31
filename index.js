@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+require('dotenv').config();
 
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -23,7 +24,7 @@ global.UserModules = require('./custom_modules');
 global.Config = require('./config');
 
 
-/** 
+/**
 * require database.
 */
 const db = require('./db/Database');
