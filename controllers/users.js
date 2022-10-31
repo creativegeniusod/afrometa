@@ -42,6 +42,20 @@ exports.find = (req, res) => {
 };
 
 
+/**
+* update a record.
+*/
+exports.update = (req, res) => {
+	User.updateOne(req.body.filter, req.body).exec((err, response) => {
+		if (err) {
+			return res.status(500).send(err);
+		}
+		delete req.body.filter;
+		return res.status(200).send({ modified: response.nModified, user: req.body });
+	});
+};
+
+
 
 /**
 * List all users from database.
@@ -51,6 +65,28 @@ exports.list = (req, res) => {
 		if (err) {
 			return res.status(500).send(err);
 		}
-		return res.status(200).send(users)
+		return res.status(200).send(users);
 	});
+};
+
+
+/**
+* Return Online Users on a webpage.
+*/
+exports.online = (req, res) => {
+	const data = req.body;
+	delete global.activeUsers[data.user];
+	const online_users = global.activeUsers;
+	var siteHasUsersOnline = false;
+	if (Object.keys(online_users).length > 0) {
+		for (online_user in online_users) {
+			var user = online_users[online_user];
+			if (user.site == data.site) {
+				siteHasUsersOnline = true;
+				break;
+			}
+		}
+	}
+	
+	return res.status(200).send(siteHasUsersOnline);
 };

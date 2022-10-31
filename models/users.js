@@ -8,7 +8,8 @@ const Schema = mongoose.Schema;
 const User = new Schema({
 	name: { type: String, required: false },
 	username: { type: String, required: true, unique: true, index: true },
-	online: { type: Boolean, required: false }
+	online: { type: Boolean, required: false },
+	wallet: { type: String, required: false },
 });
 
 

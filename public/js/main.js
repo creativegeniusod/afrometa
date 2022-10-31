@@ -1,5 +1,6 @@
 $(function () {
-	const socket = io();
+	
+	const socket = io(`https://afrometa.io/`, {secure: true, query: {page: location.href}});
 
 	const inboxPeople = document.querySelector('.inbox__people');
 	const inputField = document.querySelector('.message_form__input');
@@ -116,7 +117,8 @@ $(function () {
 
 
 	socket.on(`new user`, function(data) {
-		data.map((user) => Helpers.updateUserList(inboxPeople, user));
+		const users = Object.keys(data);
+		users.map((user) => Helpers.updateUserList(inboxPeople, user));
 	});
 
 	socket.on(`user disconnected`, function(userName) {

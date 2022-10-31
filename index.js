@@ -2,12 +2,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+
+app.use(function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	next();
+});
+
 const router = express.Router();
 
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
 	transports: ['polling']
 });
+
 
 
 /** Custom File Exports. **/
@@ -20,6 +28,8 @@ global.Config = require('./config');
 */
 const db = require('./db/Database');
 const users = require('./routes/users');
+const index_routes = require('./routes/index');
+const auth_routes = require('./routes/auth');
 
 
 
@@ -43,6 +53,8 @@ app.use(bodyParser.json());
 * Add Api paths to app.
 */
 app.use('/users', users);
+app.use('/', index_routes);
+app.use('/auth', auth_routes);
 
 
 

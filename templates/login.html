@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Login | Chat Room</title>
+
+
+	<link rel="stylesheet" href="../css/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../css/style_one.css">
+
+	<script type="text/javascript" src="../js/jquery-3.min.js"></script>
+	<script type="text/javascript" src="../js/login.js"></script>
+	<script type="text/javascript" src="../js/sweetalert.min.js"></script>
+</head>
+
+<body>
+
+	
+	<script>
+
+		const trigger = qsToJson();
+		if (trigger.channel == "fb") {
+			initFb();
+		}
+
+	</script>
+
+
+	<!-- page Continue -->
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper full-page-wrapper">
+			<div class="content-wrapper d-flex align-items-center auth px-0">
+				<div class="row w-100 mx-0">
+					<div class="col-lg-4 mx-auto">
+						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+							<div class="brand-logo">
+								<img src="../images/afrometa_icon.png" alt="logo">
+							</div>
+							<h4>Hello! let's get started</h4>
+							<h6 class="font-weight-light">Sign in to continue.</h6>
+							<form class="pt-3">
+								
+								<div id="fb-area" class="mb-2 fb-area" style="display: none;">
+									<div class="fb-login-button" 
+										data-size="large" 
+										data-button-type="login_with" 
+										data-layout="default" 
+										data-auto-logout-link="false" 
+										data-use-continue-as="true" 
+										data-width=""
+										data-scope="public_profile, email"
+										data-onlogin="onLoginCallback"
+										
+										>
+											
+									</div>									
+								</div>
+
+								<div id="tw-area" class="mb-2 tw-area" style="display: none;"></div>
+
+								<div class="text-center mt-4 font-weight-light">
+									Don't have an account? <a href="signUpPage.html" class="text-primary">Create</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- content-wrapper ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+
+	<script type="text/javascript">
+		if (trigger.channel == "fb") {
+			fbPostInit();
+		} else if (trigger.channel == "tw") {
+			initTw();
+		}
+	</script>
+
+</body>
+
+</html>

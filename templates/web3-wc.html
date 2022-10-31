@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Connect Login</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script>
+<script src="https://unpkg.com/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script>
+
+<script>
+//An infura ID, or custom ETH node is required for Ethereum, for Binance Smart Chain you can just use their public endpoint
+async function connect(){
+  console.log(window.location.pathname)
+  var provider = new WalletConnectProvider.default(
+  {
+    rpc: {1: "https://cloudflare-eth.com/"}
+  });
+
+  await provider.enable();
+  let web3 = new Web3(provider);
+  const chainId = await web3.eth.getChainId();
+  const address=await web3.eth.getAccounts();
+
+  const req = await fetch(`/users/web3-nonce`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      wallet: address[0],
+    }),
+  });
+  const nonce_data = await req.json();
+
+  const signature = await web3.eth.personal.sign(
+    nonce_data.nonce,
+    address[0]
+  );
+  const req2 = await fetch(`/users/web3-auth`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      sign: signature,
+      wallet: address[0],
+      nonce:nonce_data.nonce,
+      network:chainId
+    }),
+  });
+  const data2 = await req2.json();
+  if(data2?.status=='disabled'){
+    document.querySelector('body').innerHTML = '<h2>Wallet login is disabled.Please try again later.</h2>';
+  }
+  else if(data2?.status=='not-on-whitelist'){
+    document.querySelector('body').innerHTML = '<h2>You dont have any whitelisted NFT to proceed.</h2>';
+  }
+  else{
+    location.href = `chrome-extension://${window.location.search.split('=')[2]}/views/web3LoginSuccess.html?data=${btoa(address[0])}`;
+  }
+
+}
+connect();
+
+   </script>
+    <!-- <script type="module" src="/js/web3-wc.js"></script> -->
+</body>
+</html>

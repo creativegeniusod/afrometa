@@ -10,14 +10,13 @@ module.exports = {
 	},
 
 
-	
 	dev: {
-		USERNAME: 'chat_room_dev',
-		PASSWORD: 'admin123',
+		USERNAME: 'adminodz',
+		PASSWORD: 'Ygyyrty4534',
 		HOSTNAME: '127.0.0.1',
 		PORT: '27017',
 		DB: 'chat_room',
-		AUTH_SOURCE: 'chat_room'
+		AUTH_SOURCE: 'admin'
 	},
 
 	prod: {
