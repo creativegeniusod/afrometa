@@ -33,7 +33,7 @@ config.RequestUserEmail = false;
 
 config.serverUrl="https://gkmfrvwwyusr.usemoralis.com:2053/server";
 config.appId="OV1gZMOR4B3pKfPAldtjHnbQWG1ywOHV9kgTfk1a";
-config.chain="mainnet";
+config.chain="0x1";
 config.saltHash="fKlLT1Unp1UePPouKG3cDU2MzkeNijPNAritZiWq1WCa8S0zhHxUiYPJZvYf";
 config.rpcUrl='https://cloudflare-eth.com/';
 config.walletUsernameKey='@wallet';
