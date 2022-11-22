@@ -67,13 +67,13 @@ const req = await fetch(`/users/web3-nonce`, {
   });
   const data2 = await req2.json();
   if(data2?.status=='disabled'){
-    document.querySelector('body').innerHTML='<h2>Wallet login is disabled.Please try again later.</h2>'
+    document.querySelector('body').innerHTML='<h2>Wallet login is disabled.Please try again later.</h2>';
   }
   else if(data2?.status=='not-on-whitelist'){
-    document.querySelector('body').innerHTML='<h2>You dont have any whitelisted NFT to proceed.</h2>'
+    document.querySelector('body').innerHTML='<h2>You dont have any whitelisted NFT to proceed.</h2>';
   }
   else{
-  location.href = `chrome-extension://${window.location.search.split('=')[2]}/views/web3LoginSuccess.html?data=${btoa(address[0])}`
+    location.href = `chrome-extension://${window.location.search.split('=')[2]}/views/web3LoginSuccess.html?data=${btoa(address[0])}`;
   }
 
 
